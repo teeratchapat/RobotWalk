@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      td {
+        border: 2px solid black;
+        width: 25px;
+        height: 25px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="table-div">
+      <table id="table-sm">
+        <tbody id="table-tbody"></tbody>
+      </table>
+    </div>
+    <h1>Robot Walk</h1>
+    <button onclick="calRobotWalk()">calculate</button>
+    <p id="demo"></p>
+
+    <script>
+      function calRobotWalk() {
+        let result = prompt("myArray Robot Walk key");
+        const myArray = result.split("");
+        myArray.map(function (myArray) {
+          console.log(myArray);
+        });
+        let robotDirection = 0;
+        let position = { x: 0, y: 0 };
+        myArray.map((myArray) => {
+          console.log(myArray)
+          if ((myArray === "W"||myArray === "w") && robotDirection % 4 == 0) {
+            position.y = position.y + 1;
+          } else if (
+            ((myArray === "W"||myArray === "w") && robotDirection % 4 == 1) ||
+            robotDirection % 4 == -3
+          ) {
+            position.x = position.x - 1;
+          } else if (
+            ((myArray === "W"||myArray === "w") && robotDirection % 4 == 2) ||
+            robotDirection % 4 == -2
+          ) {
+            position.y = position.y - 1;
+          } else if (
+            (myArray === "W"||myArray === "w") &&
+            (robotDirection % 4 == 3 || robotDirection % 4 == -1)
+          ) {
+            position.x = position.x + 1;
+          }
+          else if (myArray === "L"||myArray === "l") {
+            robotDirection = robotDirection + 1;
+          }
+          else if (myArray === "R"||myArray === "r") {
+            robotDirection = robotDirection - 1;
+          }
+        });
+        // console.log(position);
+        // console.log(robotDirection);
+        alert("x: "+position.x+"y: "+position.y+"robotDirection: " +robotDirection);
+    
+        document.getElementById("demo").innerHTML = "x: "+position.x+"y: "+position.y+"robotDirection: " +robotDirection;
+      }
+    </script>
+  </body>
+</html>
