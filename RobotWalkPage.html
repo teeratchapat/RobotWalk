@@ -20,47 +20,48 @@
         </table>
     </div>
     <h1>Robot Walk</h1>
-    <!-- <h2>The prompt() Method</h2> -->
     <button onclick="calRobotWalk()">คำนวณ</button>
     <button onclick="reload_page()">โหลดหน้ากระดาษ</button>
-    <!-- <button onclick="genalateTable(13,13)">สร้างตาราง</button>
-    <button onclick="highlightcell(6,6)">แสดงคำตอบ</button> -->
     <p id="demo"></p>
 
     <script>
+      //โหลดหน้ากระดาษใหม่ เพราะยังไม่ได้แก้ บัคสำหรับการคำนวณหลายครั้ง
         function reload_page() {
             location.reload();
         }
+      //set จุดเริ่มต้น
         function start_point(row, cell) {
             let id = `${row}_${cell}`
             let table_cell = document.getElementById(id)
             table_cell.style.backgroundColor = "green"
         }
+      //กำหนดจุดปลายทาง
         function highlightcell(row, cell) {
             let id = `${row}_${cell}`
             let table_cell = document.getElementById(id)
             table_cell.style.backgroundColor = "red"
         }
+      //สร้างตาราง
         function genalateTable(row, cell) {
             let tbody = document.getElementById('table-tbody')
             for (let i = 0; i < row; i++) {
                 let tr = document.createElement('tr')
                 for (let j = 0; j < cell; j++) {
                     let td = document.createElement('td')
-                    // td.style.backgroundColor="red"
                     td.id = `${i}_${j}`
                     tr.appendChild(td)
                 }
                 tbody.appendChild(tr)
             } 
         }
+      //คำนวณการทำงานและรับค่าหลังจากทำงานแล้ว
         function calRobotWalk() {
             let result = prompt("myArray Robot Walk Key (กด w,r,l)");
             const myArray = result.split("");
             myArray.map(function (myArray) {
                 console.log(myArray);
             });
-            let robotDirection = 0;
+            let robotDirection = 0;//0=เหนือ,1=ตะวันตก,2=ใต้,3=ตะวันออก
             let position = { x: 0, y: 0 };
             let point = { x: 6, y: 6 };
             myArray.map((myArray) => {
@@ -106,7 +107,6 @@
             genalateTable(13,13)
             start_point(6,6)
             highlightcell(pointx,pointy)
-            // console.log("x: " + pointx + " y: " + pointy)
             document.getElementById("demo").innerHTML = "{x="+position.x+",y="+position.y+"}"
         }
     </script>
